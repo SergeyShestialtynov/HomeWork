@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "0d6554f1-e75d-4a53-a97c-e62772b38d49",
+		"name": "HomeWorkPostman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get_id_city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f04d8605-5114-46e4-be7e-304e1bdc2771",
+						"exec": [
+							"pm.environment.set(\"cityId\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "4e095f0c5eebbb6cea4d7ba49d12b843",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "APPID",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/data/2.5/weather?q={{city_name}}&lang=ru",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{city_name}}"
+						},
+						{
+							"key": "lang",
+							"value": "ru"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_weather",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "4e095f0c5eebbb6cea4d7ba49d12b843",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "APPID",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/data/2.5/weather?id={{cityId}}&units=metric&lang=ru",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{cityId}}"
+						},
+						{
+							"key": "units",
+							"value": "metric"
+						},
+						{
+							"key": "lang",
+							"value": "ru"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "011c8d4c-4303-4288-a25a-735f4d1defcc",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "5e752f90-1463-4943-b252-b7c5612dd258",
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status is ok, response is json\", function () {",
+					"    pm.response.to.be.ok;",
+					"    pm.response.to.be.json;",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "8e459dd3-f884-47ef-8241-47fef236c0f6",
+			"key": "city_name",
+			"value": "Новосибирск"
+		},
+		{
+			"id": "27c7bde2-eee7-47cc-99d9-223ea5bad18f",
+			"key": "cityId",
+			"value": ""
+		}
+	],
+	"protocolProfileBehavior": {}
+}
